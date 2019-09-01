@@ -37,4 +37,10 @@ static List<QuizQuestion> listOfQuestions= new ArrayList<>();
         File resources = new File(path);
         return resources.list(  )[choice];
     }
+    public static void printQuestionsFromChosenCategory (){
+        for (QuizQuestion element: listOfQuestions
+             ) {
+            System.out.println("Pytanie: " + element.question + "\n" );
+        }
+    }
 }
