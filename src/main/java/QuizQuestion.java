@@ -12,14 +12,6 @@ public class QuizQuestion {
         this.question = question;
         this.answers = Collections.unmodifiableList( answers );
     }
-
-
-    static List<String> rotateAnswers(List<String> answers) {
-        List<String> tempLista;
-        tempLista = answers;
-        Collections.shuffle( tempLista );
-        return tempLista;
-    }
     public String getQuestion() {
         return question;
     }
