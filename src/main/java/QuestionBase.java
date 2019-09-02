@@ -8,20 +8,20 @@ import java.util.Scanner;
 
 public class QuestionBase {
 
-    List<QuizQuestion> listOfQuestions= new ArrayList<>();
+    private List<QuizQuestion> listOfQuestions= new ArrayList<>();
 
     public List<QuizQuestion> createListOfQuestionsForChoosenCategory(String fileName) throws FileNotFoundException {
         String path = "src\\main\\resources.\\" + fileName;
         File file = new File(path);
         try(Scanner scanner = new Scanner( file )) {
             while (scanner.hasNextLine()) {
-                QuizQuestion quizQuestion = new QuizQuestion();
-                quizQuestion.setQuestion( scanner.nextLine() );
+                String question =  scanner.nextLine();
                 int countAnswers = Integer.parseInt( scanner.nextLine() );
+                List<String> answers = new ArrayList<>(  );
                 for (int j = 0; j < countAnswers; j++) {
-                    quizQuestion.setAnswers( scanner.nextLine() );
+                    answers.add(scanner.nextLine());
                 }
-
+                QuizQuestion quizQuestion = new QuizQuestion(question, answers);
                 listOfQuestions.add(quizQuestion);
             }
         }
@@ -40,12 +40,6 @@ public class QuestionBase {
     public File chooseCategory (int choice){
         List<File> categories = getCategories();
         return categories.get(choice);
-    }
-    public void printQuestionsFromChosenCategory (){
-        for (QuizQuestion element: listOfQuestions
-             ) {
-            System.out.println("Pytanie: " + element.question + "\n" );
-        }
     }
 
     public static void printCategories (){

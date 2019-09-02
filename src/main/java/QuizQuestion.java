@@ -1,25 +1,32 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class QuizQuestion {
-    String question;
-    List<String> answers = new ArrayList<>(  );
 
-    public void setQuestion(String question) {
+
+    private final String question;
+    private final List<String> answers;
+
+    public QuizQuestion(String question, List<String> answers) {
         this.question = question;
+        this.answers = Collections.unmodifiableList( answers );
     }
-    public void setAnswers(String answer) {
-        answers.add( answer );
-    }
+
 
     static List<String> rotateAnswers(List<String> answers) {
-        List<String> tempLista = answers;
+        List<String> tempLista;
+        tempLista = answers;
         Collections.shuffle( tempLista );
         return tempLista;
     }
-    static String getCorrectAnswer(List<String> anwers){
-        return anwers.get( 0 );
+    public String getQuestion() {
+        return question;
+    }
+    public List<String> getAnswers() {
+        return answers;
+    }
+    public String getCorrectAnswer(){
+        return answers.get( 0 );
     }
 }
